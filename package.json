@@ -1,0 +1,23 @@
+{
+    "name": "swagger-demo",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "keywords": [],
+    "author": "gago",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.16.1",
+        "express": "^4.14.1",
+        "jsonwebtoken": "^7.3.0",
+        "morgan": "^1.8.1"
+    },
+    "devDependencies": {
+        "express": "^4.14.1",
+        "jsonwebtoken": "^7.3.0"
+    },
+    "description": ""
+}

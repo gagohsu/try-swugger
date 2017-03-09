@@ -1,0 +1,129 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: "Demo Swagger API Documentation"
+  description: Demo Swagger API Documentation
+  version: "1.0.0"
+# the domain of the service
+host: localhost:3000
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /api/v1
+securityDefinitions:
+  jwt:
+    type: apiKey
+    in: header
+    name: Authorization
+    
+paths:
+  /token:
+    get:
+      description: Get token
+      tags:
+        - Auth
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              token:
+                type: string 
+  /class:
+    get:
+      summary: Get  Class List
+      security:
+        - jwt: []
+      tags:
+        - Class
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/ClassModel"
+    post:
+      summary: Create Class 
+      security:
+        - jwt: []
+      tags:
+        - Class
+      parameters:
+        - name: payload
+          in: body
+          schema:
+            $ref: "#/definitions/ClassData"
+
+      responses:
+        200:
+          description: OK
+          schema:
+              $ref: "#/definitions/ClassModel"
+  /class/{id}:
+    put:
+      summary: Updata class Data
+      security:
+        - jwt: []
+      tags:
+        - Class
+      parameters:
+        - name: payload
+          in: body
+          schema:
+            $ref: "#/definitions/ClassData"
+        - name: id
+          in: path
+          required: true
+          type: number
+          format: int16
+      responses:
+        200:
+          description: OK
+    delete:
+      summary: Remove class Data
+      security:
+        - jwt: []
+      tags:
+        - Class
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: number
+          format: int16
+      responses:
+        200:
+          description: OK
+    
+
+  
+definitions:
+  ClassModel:
+    type: object
+    properties:
+      id:
+        type: number
+      cname:
+        type: string
+      cdes:
+        type: string
+  ClassData:
+    type: object
+    properties:
+      cname:
+        type: string
+      cdes:
+        type: string
+        
+        
+        
+        
+        
+        
+        
+        
+        
